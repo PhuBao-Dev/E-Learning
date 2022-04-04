@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 async function connect(){
     try {
-        await mongoose.connect('mongodb://localhost:27017/F8Education');
+        // await mongoose.connect('mongodb://localhost:27017/F8Education');
+        await mongoose.connect('mongodb+srv://impbpb:6LEhnBfTY6LCfOSU@pbcluster.46aet.mongodb.net/F8Education');
         // await mongoose.connect('mongodb+srv://admin:123@sneakerjeeps.vk6bp.mongodb.net/ver1');
         console.log("Successfully Connected");
     } catch (error) {
