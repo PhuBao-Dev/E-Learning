@@ -1,0 +1,19 @@
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-lg-3 " style="background-color:bisque">
+            <a href="/course"><button>Học ngay</button></a>
+        </div>
+        <div class="col-lg-9" style="background-color:gainsboro">
+            <h2>
+                <%= course.title %>
+            </h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= course.videoID %> "
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            <p>
+                <%= course.description %>
+            </p>
+        </div>
+    </div>
+</div>

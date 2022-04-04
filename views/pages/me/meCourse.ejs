@@ -1,0 +1,82 @@
+<div class="container mt-4">
+    <h2>Khóa học của tôi</h2>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Video ID</th>
+                <th scope="col">Chỉnh sửa</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% courses.forEach((element, index)=> { %>
+                <tr>
+                    <th scope="row">
+                        <%= index+1 %>
+                    </th>
+                    <td>
+                        <%= element.title %>
+                    </td>
+                    <td>
+                        <%= element.createdAt %>
+                    </td>
+                    <td>
+                        <%= element.videoID %>
+                    </td>
+                    <td>
+                        <a href="/course/<%=element._id%>/edit" class="btn btn-outline-success">Sửa</a>
+                        <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            data-id="<%=element._id%>">Xóa</a>
+                    </td>
+                </tr>
+                <% }); %>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa khóa học này không?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa bỏ</button>
+
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<form method="POST" name="delete-course-form"></form>
+<script>
+    var exampleModal = document.getElementById('exampleModal')
+    var idCou
+    var delCouForm = document.forms['delete-course-form']
+    var btnDelCou = document.getElementById('btn-delete-course')
+
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        idCou = button.getAttribute('data-id')
+    })
+
+    btnDelCou.onclick = function () {
+
+        delCouForm.action = "/course/" + idCou + "?_method=DELETE"
+        delCouForm.submit()
+    }
+</script>
